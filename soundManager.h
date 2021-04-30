@@ -2,27 +2,28 @@
 #include "singletone.h"
 #include "cocos2d.h"
 
-class soundManager : public singletone<soundManager>, public cocos2d::Ref
+class soundManager : public singletone<soundManager>
 {
 public:
 	void init();
 
 private:
-	float _soundVolume;
-	int audioId1;
-	std::vector<const std::string*> bgmList;
-	std::vector<const std::string*> sfxLIst;
+	float bgmVolume;
+	float sfxVolume;
 	
-	void preloadAll(Ref* pSender);
-	void uncacheAll(Ref* pSender);
+	int bgmId;
+	int sfxId;
+	
+	void preloadAll(std::vector<const char*>* bgm, std::vector<const char*>* sfx);
+	void uncacheAll();
 
-	void upVolume(Ref* pSender);
-	void downVolume(Ref* pSender);
+	void upVolume(float dt, bool bgm=false);
+	void downVolume(float dt, bool bgm = false);
 
-	void playSound(Ref* pSender);
-	void pauseSound(Ref* pSender);
-	void resumeSound(Ref* pSender);
-	void stopSound(Ref* pSender);
+	void playSound(const char* key, bool bgm=false);
+	void pauseSound(bool bgm = false);
+	void resumeSound(bool bgm = false);
+	void stopSound(bool bgm = false);
 
 	~soundManager();
 
