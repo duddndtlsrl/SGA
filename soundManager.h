@@ -14,7 +14,7 @@ private:
 	int bgmId;
 	int sfxId;
 	
-	void preloadAll(std::vector<const char*>* bgm, std::vector<const char*>* sfx);
+	void preloadAll(std::vector<char*>* bgm, std::vector<char*>* sfx);
 	void uncacheAll();
 
 	void upVolume(float dt, bool bgm=false);
